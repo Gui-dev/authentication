@@ -4,17 +4,22 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --transpileOnly --ignore-watch node_modules index.ts"
+    "dev": "ts-node-dev --transpileOnly --ignore-watch node_modules index.ts",
+    "typeorm": "npx ts-node ./node_modules/typeorm/cli.js"
   },
   "devDependencies": {
     "@types/cors": "^2.8.6",
     "@types/express": "^4.17.6",
+    "@types/node": "^14.0.14",
     "ts-node": "^8.10.2",
     "ts-node-dev": "^1.0.0-pre.49",
     "typescript": "^3.9.5"
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^8.2.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.25"
   }
 }
