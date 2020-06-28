@@ -9,8 +9,9 @@ import auth from './../app/middlewares/auth'
 const routes = Router()
 
 routes.post( '/users', User.store )
-
 routes.post( '/login', Login.store )
+
+routes.use( auth )
 
 
 export default routes

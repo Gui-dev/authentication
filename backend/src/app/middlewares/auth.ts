@@ -26,8 +26,6 @@ const auth = async ( request: Request, response: Response, next: NextFunction ) 
   } catch {
     return response.sendStatus( 401 )
   }
-
-  return next()
 }
 
 export default auth
