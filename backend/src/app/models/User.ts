@@ -22,12 +22,10 @@ class User {
     this.password = await bcrypt.hash( this.password, 8 )
   }
 
-  @AfterInsert()
-  public async comparePassword( password: string ) {
-    return await bcrypt.compare( password, this.password )
+  public comparePassword( password: string ) {
+    return bcrypt.compare( password, this.password )
   }
 
-  @AfterInsert()
   public generateToken( id: string ) {
     return jwt.sign( { id }, 'authsecret', {
       expiresIn: '7d'

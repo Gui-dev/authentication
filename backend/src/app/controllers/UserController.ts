@@ -2,6 +2,7 @@ import { Request, Response } from 'express'
 import { getRepository } from 'typeorm'
 
 import User from './../models/User'
+import { truncate } from 'fs'
 
 class UserController {
 
@@ -39,6 +40,33 @@ class UserController {
     }
 
     return response.status( 201 ).json( user )
+  }
+
+  async update( request: Request, response: Response ) {
+
+    const { id } = request.params
+    const { name }= request.body
+    const repository = getRepository( User )
+
+    const userData = await repository.findOne( { where: { id } } )
+
+    if( !userData ) {
+      return response.sendStatus( 401 )
+    }
+
+    const user = await repository.update( id, { name } )
+
+    if( user.affected === 1 ) {
+      const userAffected = await repository.findOne( { where: { id } } )
+      const userUpdated = {
+        id: userAffected?.id,
+        name: userAffected?.name,
+        email: userAffected?.email,
+      }
+      return response.status( 201 ).json( userUpdated )
+    }
+
+    return response.sendStatus( 401 )
   }
 }
 
