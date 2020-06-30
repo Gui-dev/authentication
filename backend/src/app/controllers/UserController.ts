@@ -21,6 +21,25 @@ class UserController {
 
     return response.status( 201 ).json( user )
   }
+
+  async show( request: Request, response: Response ) {
+
+    const id = request.userId
+    const repository = getRepository( User )
+    const userData = await repository.findOne( { where: { id } } )
+
+    if( !userData ) {
+      return response.sendStatus( 401 )
+    }
+
+    const user = {
+      id: userData?.id,
+      name: userData?.name,
+      email: userData?.email,
+    }
+
+    return response.status( 201 ).json( user )
+  }
 }
 
 export default new UserController()

@@ -13,5 +13,7 @@ routes.post( '/login', Login.store )
 
 routes.use( auth )
 
+routes.get( '/users', User.show )
+
 
 export default routes
