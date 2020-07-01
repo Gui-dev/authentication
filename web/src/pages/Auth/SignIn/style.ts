@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { MdEmail, MdVpnKey, MdSend } from 'react-icons/md'
 
 export const Container = styled.div`
   display: flex;
@@ -34,6 +35,7 @@ export const Title = styled.h1`
 `
 
 export const InputGroup = styled.div`
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -42,18 +44,30 @@ export const InputGroup = styled.div`
   margin-bottom: 1rem;
 `
 
-export const UserIcon = styled.div`
-  width: 2.4rem;
-  height: 2.4rem;
+export const UserIcon = styled(MdEmail)`
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 2.1rem;
+  height: 2.1rem;
   color: #FFF;
-  background: #FFF;
+`
+
+export const PasswordIcon = styled(MdVpnKey)`
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 2.1rem;
+  height: 2.1rem;
+  color: #FFF;
 `
 
 export const Input = styled.input`
   font-size: 1.6rem;
+  color: #FFF;
   width: 100%;
   height: 2.4rem;
-  padding: 1rem;
+  padding: 1rem 1rem 2rem 3rem;
   background: transparent;
   border: 0;
   border-bottom: 2px;
@@ -64,4 +78,34 @@ export const Input = styled.input`
     color: #666;
   }
 `
+
+export const ButtonSubmit = styled.button`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(to right, #414345, #232526);
+  border: 1px solid #333;
+  border-radius: 4px;
+  transition: background .2s ease-in;
+  cursor: pointer;
+
+  &:hover {
+    background: linear-gradient(to right, #232526, #414345);
+  }
+`
+
+export const ButtonIcon = styled(MdSend)`
+  width: 2.1rem;
+  height: 2.1rem;
+  color: #FFF;
+  margin-right: 1rem;
+`
+
+export const TextButton = styled.span`
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #FFF;
+`
+
 
