@@ -1,11 +1,25 @@
 import React from 'react'
 
-import { Container } from './style'
+import { Container, Form, Title, InputGroup, UserIcon, Input } from './style'
 
 const SignIn: React.FC = () => {
   return (
     <Container>
-      <h1>SignIn</h1>
+      <Form>
+        <Title>Sign In</Title>
+        <InputGroup>
+          
+          <UserIcon />
+          <Input type="text" name="email" placeholder="Digite seu e-mail"/>
+        </InputGroup>
+        
+        <InputGroup>
+          
+          <UserIcon />
+          <Input type="password" name="password" placeholder="Digite sua senha"/>
+        </InputGroup>
+
+      </Form>
     </Container>
   )
 }

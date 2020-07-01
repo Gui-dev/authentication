@@ -9,11 +9,13 @@ export default createGlobalStyle`
   }
 
   html, body, #root {
-    height: 100%;
+    font-size: 62.5%;
     font-family: 'Lato', sans-serif;
+    height: 100%;
   }
 
   input, button {
+    font-size: 62.5%;
     font-family: 'Lato', sans-serif;
     outline: none;
   }
