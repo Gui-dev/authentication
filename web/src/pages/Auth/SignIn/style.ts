@@ -1,8 +1,10 @@
 import styled from 'styled-components'
-import { MdEmail, MdVpnKey, MdSend } from 'react-icons/md'
+import { MdEmail, MdVpnKey, MdCheck } from 'react-icons/md'
+import { Link } from 'react-router-dom'
 
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
@@ -95,7 +97,7 @@ export const ButtonSubmit = styled.button`
   }
 `
 
-export const ButtonIcon = styled(MdSend)`
+export const ButtonIcon = styled(MdCheck)`
   width: 2.1rem;
   height: 2.1rem;
   color: #FFF;
@@ -106,6 +108,17 @@ export const TextButton = styled.span`
   font-size: 1.6rem;
   font-weight: bold;
   color: #FFF;
+`
+
+export const ButtonLink = styled(Link)`
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: #FFF;
+  margin-top: 1rem;
+
+  &:hover {
+    color: #715C91;
+  }
 `
 
 

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Container, Form, Title, InputGroup, UserIcon, PasswordIcon, Input,
-  ButtonSubmit, ButtonIcon, TextButton
+  ButtonSubmit, ButtonIcon, TextButton, ButtonLink
 } from './style'
 
 const SignIn: React.FC = () => {
@@ -21,9 +21,12 @@ const SignIn: React.FC = () => {
 
         <ButtonSubmit>
           <ButtonIcon />
-          <TextButton>Loggin</TextButton>
+          <TextButton>Entrar</TextButton>
         </ButtonSubmit>
       </Form>
+      <ButtonLink to="/register">
+        Ainda não tem cadastro? Cadastre-se
+      </ButtonLink>
     </Container>
   )
 }
