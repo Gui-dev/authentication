@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default createGlobalStyle`
   * {
@@ -18,5 +19,9 @@ export default createGlobalStyle`
     font-size: 62.5%;
     font-family: 'Lato', sans-serif;
     outline: none;
+  }
+
+  div.Toastify__toast-body {
+    font-size: 1.6rem;
   }
 `

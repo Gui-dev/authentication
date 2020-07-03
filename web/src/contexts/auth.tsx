@@ -1,9 +1,14 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 import api from './../services/api'
+import { authValidation } from './../validations/authValidation'
 const AuthContext = createContext( {} )
 
 interface AuthProps {
+  signed: boolean,
+  loading: boolean,
+  userData: object,
   signIn: ( email: string, password: string ) => void,
 }
 
@@ -42,6 +47,11 @@ export const AuthProvider: React.FC = ( { children } ) => {
 
   const signIn = async ( email: string, password: string ) => {
 
+    if( !( await authValidation.isValid( { email, password } ) ) ) {
+      toast.error( 'E-mail ou senha inválidos' )
+      return
+    }
+
     try {
       setLoading( true )
       const response = await api.post<LoginProps>( '/login', { email, password } )
@@ -55,6 +65,7 @@ export const AuthProvider: React.FC = ( { children } ) => {
       setLoading( false )
     } catch (error) {
       console.log( error )
+      setLoading( false )
     }
   }
 

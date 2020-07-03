@@ -1,11 +1,13 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react'
 
+import { useAuth } from './../../../contexts/auth'
 import { Container, Form, Title, InputGroup, UserIcon, PasswordIcon, Input,
   ButtonSubmit, ButtonIcon, TextButton, ButtonLink
 } from './style'
 
 const SignIn: React.FC = () => {
 
+  const { signIn, loading } = useAuth()
   const [ formData, setFormData ] = useState( {
     email: '',
     password: '',
@@ -18,7 +20,7 @@ const SignIn: React.FC = () => {
 
   const handleSubmit = ( event: FormEvent ) => {
     event.preventDefault()
-    console.log( formData.email, formData.password )
+    signIn( formData.email, formData.password )
   }
 
   return (
@@ -45,11 +47,19 @@ const SignIn: React.FC = () => {
             value={ formData.password }
             onChange={ e => handleChangeText( e ) }
           />
+
         </InputGroup>
 
         <ButtonSubmit>
-          <ButtonIcon />
-          <TextButton>Entrar</TextButton>
+          { loading 
+            ? <TextButton>Carregando...</TextButton>
+            : (
+                <>
+                  <ButtonIcon />
+                  <TextButton>Entrar</TextButton>
+                </>
+              )
+          }
         </ButtonSubmit>
       </Form>
       <ButtonLink to="/register">
