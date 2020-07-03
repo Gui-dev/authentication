@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
 
 import { AuthProvider } from './contexts/auth'
 import GlobalStyle from './styles/GlobalStyle'
@@ -9,9 +10,11 @@ function App() {
   return (
     <>
       <AuthProvider>
-        <GlobalStyle />
-        <Routes />
-        <ToastContainer/>
+        <BrowserRouter>
+          <GlobalStyle />
+          <Routes />
+          <ToastContainer/>
+        </BrowserRouter>
       </AuthProvider>
     </>
   )

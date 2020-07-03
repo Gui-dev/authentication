@@ -3,12 +3,12 @@ import { toast } from 'react-toastify'
 
 import api from './../services/api'
 import { authValidation } from './../validations/authValidation'
-const AuthContext = createContext( {} )
+
 
 interface AuthProps {
   signed: boolean,
   loading: boolean,
-  userData: object,
+  userData: object | null,
   signIn: ( email: string, password: string ) => void,
 }
 
@@ -21,9 +21,11 @@ interface LoginProps {
   token: string,
 }
 
+const AuthContext = createContext<AuthProps>( {} as AuthProps )
+
 export const AuthProvider: React.FC = ( { children } ) => {
 
-  const [ userData, setUserData ] = useState<any>( null )
+  const [ userData, setUserData ] = useState<object | null>( null )
   const [ loading, setLoading ] = useState<boolean>( false )
 
   useEffect( () => {
@@ -77,7 +79,7 @@ export const AuthProvider: React.FC = ( { children } ) => {
 }
 
 export const useAuth = () => {
-  const context = useContext( AuthContext ) as AuthProps
+  const context = useContext( AuthContext )
   return context
 }
 
