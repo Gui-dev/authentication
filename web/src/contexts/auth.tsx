@@ -10,6 +10,7 @@ interface AuthProps {
   loading: boolean,
   userData: object | null,
   signIn: ( email: string, password: string ) => void,
+  signOut: () => void
 }
 
 interface LoginProps {
@@ -71,8 +72,13 @@ export const AuthProvider: React.FC = ( { children } ) => {
     }
   }
 
+  const signOut = () => {
+    localStorage.clear()
+    setUserData( null )
+  }
+
   return (
-    <AuthContext.Provider value={ { signed: !!userData, userData, loading, signIn } }>
+    <AuthContext.Provider value={ { signed: !!userData, userData, loading, signIn, signOut } }>
       { children }
     </AuthContext.Provider>
   )
