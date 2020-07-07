@@ -3,6 +3,7 @@ import { toast } from 'react-toastify'
 
 import api from './../services/api'
 import { authValidation } from './../validations/authValidation'
+import { signUpValidation } from './../validations/signUpValidation'
 
 
 interface AuthProps {
@@ -10,7 +11,8 @@ interface AuthProps {
   loading: boolean,
   userData: object | null,
   signIn: ( email: string, password: string ) => void,
-  signOut: () => void
+  signUp: ( name: string, email: string, password: string, confirmPassword: string ) => void,
+  signOut: () => void,
 }
 
 interface LoginProps {
@@ -72,13 +74,31 @@ export const AuthProvider: React.FC = ( { children } ) => {
     }
   }
 
+  const signUp = async ( name: string, email: string, password: string, confirmPassword: string ) => {
+    
+    try {
+
+      if( !( await signUpValidation.isValid( { name, email, password, confirmPassword } ) ) ) {
+        toast.error( 'Preencha seus dados corretamente!!!' )
+        return
+      }      
+      await api.post( '/users', { name, email, password } )
+      toast.success( 'Cadastro efetuado com sucesso. Faça Login!' )
+    } catch (error) {
+      toast.error( 'Erro ao fazer o cadastro, tente mais tarde' )
+    }
+
+  }
+
   const signOut = () => {
     localStorage.clear()
     setUserData( null )
   }
 
   return (
-    <AuthContext.Provider value={ { signed: !!userData, userData, loading, signIn, signOut } }>
+    <AuthContext.Provider 
+      value={ { signed: !!userData, userData, loading, signIn, signUp, signOut } }
+    >
       { children }
     </AuthContext.Provider>
   )

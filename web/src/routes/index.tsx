@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter } from 'react-router-dom'
 
 import { useAuth } from './../contexts/auth'
 import Auth from './auth.routes'
@@ -10,7 +11,9 @@ const Routes: React.FC = () => {
 
   const Layout = !signed ? Auth : App
   return (
-    <Layout />
+    <BrowserRouter>
+      <Layout />
+    </BrowserRouter>
   )
 }
 
