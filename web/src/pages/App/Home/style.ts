@@ -13,6 +13,12 @@ export const Container = styled.div`
     color: #333;
   }
 
+  span {
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: #999;
+  }
+
   button {
     font-size: 1.8rem;
     font-weight: bold;
