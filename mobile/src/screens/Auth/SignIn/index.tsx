@@ -1,13 +1,34 @@
 import React from 'react'
-import { Text } from 'react-native'
 
 import Background from './../../../components/Background'
-import { Container } from './style'
+import { Container, Title, Form, FormInput } from './style'
 
 const SignIn: React.FC = () => {
   return (
     <Background>
-      <Text>SignIn</Text>
+      <Container>
+        <Title>Sign in</Title>
+
+        <Form>
+          
+          <FormInput 
+            icon="mail-outline"
+            keyboardType="email-address"
+            autoCorrect={ false }
+            autoCapitalize="none"
+            placeholder="Digite seu e-mail"
+          />
+          
+          <FormInput 
+            icon="lock-open"
+            secureTextEntry={ true }
+            autoCorrect={ false }
+            autoCapitalize="none"
+            placeholder="Digite sua senha"
+          />
+
+        </Form>
+      </Container>
     </Background>
   )
 }
