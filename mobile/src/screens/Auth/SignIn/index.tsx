@@ -1,6 +1,8 @@
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 
+import { useAuth } from './../../../contexts/auth'
+
 import Background from './../../../components/Background'
 import { Container, Title, Form, FormInput, ButtonSubmit, TextButton, 
   ButtonLink, TextButtonLink } from './style'
@@ -8,9 +10,15 @@ import { Container, Title, Form, FormInput, ButtonSubmit, TextButton,
 const SignIn: React.FC = () => {
 
   const navigation = useNavigation()
+  const { signIn } = useAuth()
 
   const handleNavigationSignUp = () => {
     navigation.navigate( 'SignUp' )
+  }
+
+  const handleSubmit = () => {
+
+    signIn()
   }
 
   return (
@@ -36,7 +44,7 @@ const SignIn: React.FC = () => {
             placeholder="Digite sua senha"
           />
 
-          <ButtonSubmit>
+          <ButtonSubmit onPress={ handleSubmit }>
             <TextButton>
               Enter
             </TextButton>
