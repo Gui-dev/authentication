@@ -3,7 +3,7 @@ import { ActivityIndicator } from 'react-native'
 
 export const LoadingContainer = styled(ActivityIndicator).attrs({
   size: 'large',
-  color: '#FFF',
+  // color: `${ ( props: any ) => props.styleColor ? props.styleColor : '#FFF' }`,
 })`
   flex: 1;
   justify-content: center;

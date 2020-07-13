@@ -3,10 +3,15 @@ import React from 'react'
 import Background from './../Background'
 import { LoadingContainer } from './style'
 
-const Loading: React.FC = () => {
+interface LoadingProps {
+  styleColor?: string 
+}
+
+const Loading: React.FC<LoadingProps> = ( { styleColor = '#FFF' } ) => {
+
   return (
     <Background>
-      <LoadingContainer />
+      <LoadingContainer color={ styleColor }/>
     </Background>
   )
 }
