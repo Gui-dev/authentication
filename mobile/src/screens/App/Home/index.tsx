@@ -1,10 +1,15 @@
 import React from 'react'
-import { View } from 'react-native'
+import { Text } from 'react-native'
 
 import { Container } from './style'
 
 const Home: React.FC = () => {
-  return <View />
+  
+  return (
+    <Container>
+      <Text>Welcome</Text>
+    </Container>
+  )
 }
 
 export default Home

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
 import { useAuth } from './../../../contexts/auth'
@@ -12,13 +12,16 @@ const SignIn: React.FC = () => {
   const navigation = useNavigation()
   const { signIn } = useAuth()
 
+  const [ email, setEmail ] = useState( '' )
+  const [ password, setPassword ] = useState( '' )
+
   const handleNavigationSignUp = () => {
     navigation.navigate( 'SignUp' )
   }
 
   const handleSubmit = () => {
 
-    signIn()
+    signIn( email, password )
   }
 
   return (
@@ -34,6 +37,8 @@ const SignIn: React.FC = () => {
             autoCorrect={ false }
             autoCapitalize="none"
             placeholder="Digite seu e-mail"
+            value={ email }
+            onChangeText={ setEmail }
           />
           
           <FormInput 
@@ -42,6 +47,8 @@ const SignIn: React.FC = () => {
             autoCorrect={ false }
             autoCapitalize="none"
             placeholder="Digite sua senha"
+            value={ password }
+            onChangeText={ setPassword }
           />
 
           <ButtonSubmit onPress={ handleSubmit }>

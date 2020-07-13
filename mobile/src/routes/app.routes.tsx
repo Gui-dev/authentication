@@ -8,7 +8,9 @@ const App: React.FC = () => {
   const Stack = createStackNavigator()
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      headerMode="none"
+    >
       <Stack.Screen name="Home" component={ Home }/>
     </Stack.Navigator>
   )
