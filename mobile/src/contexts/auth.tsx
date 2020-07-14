@@ -14,6 +14,7 @@ interface AuthContextProps {
   user: object | null,
   signIn: ( email: string, password: string ) => void,
   signUp: ( name: string, email: string, password: string, confirmPassword: string ) => void,
+  signOut: () => void
 }
 
 interface ResponseUserProps {
@@ -94,12 +95,17 @@ export const AuthProvider: React.FC = ( { children } ) => {
     }
   }
 
+  const signOut = async () => {
+    await AsyncStorage.clear()
+    setUser( null )
+  }
+
   if( loading ) {
     return <Loading />
   }
 
   return (
-    <AuthContext.Provider value={ { signed: !!user, loading, user, signIn, signUp } }>
+    <AuthContext.Provider value={ { signed: !!user, loading, user, signIn, signUp, signOut } }>
       { children }
     </AuthContext.Provider>
   )
