@@ -25,7 +25,8 @@
     "react-native-screens": "~2.9.0",
     "react-native-vector-icons": "^7.0.0",
     "react-native-web": "~0.11.7",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "yup": "^0.29.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
@@ -33,6 +34,7 @@
     "@types/react-native": "~0.62.13",
     "@types/react-native-vector-icons": "^6.4.5",
     "@types/styled-components": "^5.1.1",
+    "@types/yup": "^0.29.3",
     "typescript": "~3.9.5"
   },
   "private": true
