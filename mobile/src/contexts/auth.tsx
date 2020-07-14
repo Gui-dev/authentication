@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage'
 
 import Loading from './../components/Loading'
 
+import * as RootNavigation from './../services/RootNavigation'
 import api from './../services/api'
 import { signInValidation, signUpValidation } from './../validations/authValidations'
 
@@ -12,7 +13,7 @@ interface AuthContextProps {
   loading: boolean,
   user: object | null,
   signIn: ( email: string, password: string ) => void,
-  signUp: () => void,
+  signUp: ( name: string, email: string, password: string, confirmPassword: string ) => void,
 }
 
 interface ResponseUserProps {
@@ -52,10 +53,11 @@ export const AuthProvider: React.FC = ( { children } ) => {
 
     if( !( await signInValidation.isValid( { email, password } ) ) ) {
       Alert.alert( 'Opppssss', 'Algo deu errado, verifique seus dados' )
+      return
     }
 
     try {
-      setLoading( true )
+      
       const response = await api.post<ResponseUserProps>( '/login', { email, password } )
       const { user, token } = response.data
       setUser( user )
@@ -69,9 +71,27 @@ export const AuthProvider: React.FC = ( { children } ) => {
     }
   }
 
-  const signUp = async () => {
+  const signUp = async ( name: string, email: string, password: string, confirmPassword: string ) => {
 
-    console.log( 'SignUp' )
+
+    if( !( await signUpValidation.isValid( { name, email, password, confirmPassword } ) ) ) {
+      Alert.alert( 'Oppsss', 'Verifique seus dados e preencha todos os campos' )
+      return
+    }
+
+    try {
+      const { data } = await api.post( '/users', { name, email, password } )
+
+      if( data ) {
+        Alert.alert( 'Sucesso', 'Cadastro efetuado com sucesso' )
+        RootNavigation.navigate( 'SignIn' )
+      }
+
+      setLoading( false )
+    } catch {
+      Alert.alert( 'Oppssss', 'Algo deu errado, tente mais tarde' )
+      setLoading( false )
+    }
   }
 
   if( loading ) {
